@@ -1,0 +1,7 @@
+#!/usr/bin/php
+<?php
+
+$file = $argv[1];
+$md5 = md5_file($file);
+
+echo "$md5  $file\n";
