@@ -37,4 +37,5 @@ switch($uri)
         break;
 }
 
-require_once($file);
+require_once("layout.php");
+?>
