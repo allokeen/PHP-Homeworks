@@ -14,8 +14,6 @@ require ("../autoload.php");
 $app = new App();
 $app->run();
 
-
-
 // Example data
 
 $example_users = [

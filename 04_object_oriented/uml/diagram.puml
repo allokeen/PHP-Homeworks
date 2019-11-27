@@ -5,6 +5,16 @@ class App {
     - render(Widget\Widget)
 }
 
+note as AppNote
+1. Creates storage object.
+2. Creates several widgets.
+3. Stores widgets into storage.
+4. Loads widgets from storage.
+5. Draws widgets using render method.
+end note
+
+App .. AppNote
+
 namespace Widget {
 
     abstract class Widget {
@@ -15,9 +25,23 @@ namespace Widget {
         + draw()
     }
 
+    note as LinkNote
+    Prints link HTML using echo command.
+    Example: <a href="">widget_link_1</a>
+    end note
+
+    Link .. LinkNote
+
     class Button {
         + draw()
     }
+
+    note as ButtonNote
+    Prints button HTML using echo command.
+    Example: <input type="button" value="widget_button_2">
+    end note
+
+    Button .. ButtonNote
 
     Widget <|-- Link
     Widget <|-- Button
@@ -34,6 +58,15 @@ namespace Concept {
         + key() : string
         - normalize(string)
     }
+
+    note as DistinguishableNote
+    Creates unique key for every objects.
+    Takes id in constructor and combines it with type names.
+    Example: widget_link_1, widget_button_2
+    Uses static::class to get type of deriving class.
+    end note
+
+    Distinguishable .. DistinguishableNote
 }
 
 Concept.Distinguishable <|-- Widget.Widget
@@ -48,6 +81,13 @@ namespace Config {
         + {static} view() : string
         + {static} src() : string
     }
+
+    note as DirectoryNote
+    Used to set path to main directory in index.php.
+    Return path to storage/ and views/ directory.
+    end note
+
+    Directory .. DirectoryNote
 }
 
 namespace Storage {
@@ -62,10 +102,25 @@ namespace Storage {
         + loadAll() : array
     }
 
+    note as SessionStorageNote
+    Stores serialized objects in $_SESSION
+    Example: $_SESSION[$dummy->key()] = serialize($dummy)
+    end note
+
+    SessionStorage .. SessionStorageNote
+
     class FileStorage {
         + store(Distinguishable)
         + loadAll() : array
     }
+
+    note as FileStorageNote
+    Stores serialized objects in storage/ directory.
+    Example file storage/widget_button_2 contains
+    serialized object of type Button with id 2.
+    end note
+
+    FileStorage .. FileStorageNote
 
     Storage <|-- SessionStorage
     Storage <|-- FileStorage

@@ -1,4 +1,4 @@
-``# 06 DEPENDENCY MANAGER
+# 06 DEPENDENCY MANAGER
 
 Nginx setup:
 ```bash

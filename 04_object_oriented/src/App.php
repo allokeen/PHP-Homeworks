@@ -6,8 +6,4 @@ class App
 
         echo "Hello from App!";
     }
-    private function render()
-    {
-
-    }
 }
